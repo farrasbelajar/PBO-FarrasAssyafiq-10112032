@@ -1,55 +1,80 @@
 <?php
 
-class Menghitung {
-    public $pinjaman;
-    public $lama;
-    public $terlambat;
-    public $bunga = 0.10;
+// ini CLASSnya yang nama class mahasiswa untuk 
 
-    public function hitungTotalPinjaman() {
-        return $this->pinjaman + ($this->pinjaman * $this->bunga);
-    }
+class Mahasiswa {
 
-    public function hitungAngsuran() {
-        return $this->hitungTotalPinjaman() / $this->lama;
-    }
+    // PROPERTY atau variable ini untuk menyimpan sebuah data 
+    public $nama;
+    public $kelas;
+    public $mata_kuliah;
+    public $nilai;
 
-    public function hitungDenda() {
-        return $this->hitungAngsuran() * 0.0015 * $this->terlambat;
-    }
-
-    public function hitungTotalBayar() {
-        return $this->hitungAngsuran() + $this->hitungDenda();
+    // METHOD itu sama kaya fungsi untuk memproses data yang sudah ada
+    public function cekKelulusan() {
+        if ($this->nilai >= 75) {
+            return "LULUS";
+        } else {
+            return "TIDAK LULUS";
+        }
     }
 }
 
-$pegadaian = new Menghitung ();
 
-$pegadaian->pinjaman = $_POST['pinjaman'];
-$pegadaian->lama = $_POST['lama_angsuran'];
-$pegadaian->terlambat = $_POST['terlambat'];
 
-$total_pinjaman = $pegadaian->hitungTotalPinjaman();
-$angsuran = $pegadaian->hitungAngsuran();
-$denda = $pegadaian->hitungDenda();
-$total_bayar = $pegadaian->hitungTotalBayar();
 
-echo "TOKO PEGADAIAN SYARIAH\n";
-echo "Jalan Keadilan No 16\n";
-echo "Telpon : 72353459\n\n";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-echo "Program Penghitungan Besaran Angsuran Hutang\n\n";
+  
 
-echo "Besaran Pinjaman : Rp." . number_format($pegadaian->pinjaman,0,",",".") . "\n";
-echo "Bunga : 10%\n";
-echo "Total Pinjaman : Rp." . number_format($total_pinjaman,0,",",".") . "\n";
-echo "Lama Angsuran (bulan) : " . $pegadaian->lama . "\n";
-echo "Besaran Angsuran : Rp." . number_format($angsuran,0,",",".") . "\n\n";
+    $mhs1 = new Mahasiswa();
+    $mhs1->nama = $_POST["nama1"];
+    $mhs1->kelas = $_POST["kelas1"];
+    $mhs1->mata_kuliah = $_POST["mapel1"];
+    $mhs1->nilai = $_POST["nilai1"];
 
-echo "Ketentuan denda keterlambatan 0,15% per hari dari angsuran\n\n";
+    $mhs2 = new Mahasiswa();
+    $mhs2->nama = $_POST["nama2"];
+    $mhs2->kelas = $_POST["kelas2"];
+    $mhs2->mata_kuliah = $_POST["mapel2"];
+    $mhs2->nilai = $_POST["nilai2"];
 
-echo "Keterlambatan (hari) : " . $pegadaian->terlambat . "\n";
-echo "Denda Keterlambatan : Rp." . number_format($denda,0,",",".") . "\n";
-echo "Besaran Pembayaran : Rp." . number_format($total_bayar,0,",",".") . "\n";
+    $mhs3 = new Mahasiswa();
+    $mhs3->nama = $_POST["nama3"];
+    $mhs3->kelas = $_POST["kelas3"];
+    $mhs3->mata_kuliah = $_POST["mapel3"];
+    $mhs3->nilai = $_POST["nilai3"];
+
+
+    $dataMahasiswa = [$mhs1, $mhs2, $mhs3]; // ini array nya untuk menyimpan data nya biar di manggil mudah
+
+
+   
+}
+ echo "<h2>HASIL NILAI MAHASISWA</h2>";
+
+    echo "<hr>";
+    echo "<b>Mahasiswa 1</b><br>";
+    echo "Nama : " . $dataMahasiswa[0]->nama . "<br>";
+    echo "Kelas : " . $dataMahasiswa[0]->kelas . "<br>";
+    echo "Mata Kuliah : " . $dataMahasiswa[0]->mata_kuliah . "<br>";
+    echo "Nilai : " . $dataMahasiswa[0]->nilai . "<br>";
+    echo "Keterangan : <b>" . $dataMahasiswa[0]->cekKelulusan() . "</b><br>";
+
+    echo "<hr>";
+    echo "<b>Mahasiswa 2</b><br>";
+    echo "Nama : " . $dataMahasiswa[1]->nama . "<br>";
+    echo "Kelas : " . $dataMahasiswa[1]->kelas . "<br>";
+    echo "Mata Kuliah : " . $dataMahasiswa[1]->mata_kuliah . "<br>";
+    echo "Nilai : " . $dataMahasiswa[1]->nilai . "<br>";
+    echo "Keterangan : <b>" . $dataMahasiswa[1]->cekKelulusan() . "</b><br>";
+
+    echo "<hr>";
+    echo "<b>Mahasiswa 3</b><br>";
+    echo "Nama : " . $dataMahasiswa[2]->nama . "<br>";
+    echo "Kelas : " . $dataMahasiswa[2]->kelas . "<br>";
+    echo "Mata Kuliah : " . $dataMahasiswa[2]->mata_kuliah . "<br>";
+    echo "Nilai : " . $dataMahasiswa[2]->nilai . "<br>";
+    echo "Keterangan : <b>" . $dataMahasiswa[2]->cekKelulusan() . "</b><br>";
 
 ?>
