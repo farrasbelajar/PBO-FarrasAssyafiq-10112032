@@ -1,6 +1,6 @@
 <?php
 
-// ini CLASSnya yang nama class mahasiswa untuk 
+// ini CLASSnya yang nama class mahasiswa 
 
 class Mahasiswa {
 
@@ -26,7 +26,7 @@ class Mahasiswa {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   
-
+    // ini objek nya 
     $mhs1 = new Mahasiswa();
     $mhs1->nama = $_POST["nama1"];
     $mhs1->kelas = $_POST["kelas1"];
@@ -51,6 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    
 }
+
+    // ini bisa di echo nya bisa memanggil pake $dataMahasiswa[0] sampai 2 karena mulai nya dari 0 atau bisa memanggilnya pake $mhs1 sampai 3 karena di objek nya gitu
  echo "<h2>HASIL NILAI MAHASISWA</h2>";
 
     echo "<hr>";
@@ -71,10 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     echo "<hr>";
     echo "<b>Mahasiswa 3</b><br>";
-    echo "Nama : " . $dataMahasiswa[2]->nama . "<br>";
-    echo "Kelas : " . $dataMahasiswa[2]->kelas . "<br>";
-    echo "Mata Kuliah : " . $dataMahasiswa[2]->mata_kuliah . "<br>";
-    echo "Nilai : " . $dataMahasiswa[2]->nilai . "<br>";
-    echo "Keterangan : <b>" . $dataMahasiswa[2]->cekKelulusan() . "</b><br>";
+    echo "Nama : " . $mhs3->nama . "<br>";
+    echo "Kelas : " . $mhs3->kelas . "<br>";
+    echo "Mata Kuliah : " . $mhs3->mata_kuliah . "<br>";
+    echo "Nilai : " . $mhs3->nilai . "<br>";
+    echo "Keterangan : <b>" . $mhs3->cekKelulusan() . "</b><br>";
 
 ?>
